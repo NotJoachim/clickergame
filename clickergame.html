@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    	<link rel="stylesheet" href="clickergame.css">
+    <meta charset="utf-8">
+    <title>Clickergame</title>
+  </head>
+  <body>
+
+          <div class="wrapper">
+        	<div class="item1">
+            <p id="names">money&#x2192;<br><br>height&#x2192;<br><br>Clicks&#x2192;</p>
+            <p id="money"></p>
+            <p id="endre2" class="overskrift2">200m</p>
+            <p id="counter">0</p>
+
+          </div>
+          <div class ="item2"><p id="gogtitle">ⒼⓄⓄⒼⓁⒺ ⓂⒶⓅⓈ &searhk;ⒸⓁⒾⒸⓀⒺⓇ&swarhk;</p>
+            <button  class=buttonklikk type="submit" name="klikk" onclick="klikk()"  ></button>
+          </div>
+          <div class="item3">
+            <div class=" earthmeny">
+            <button class="earthbutton upgradeDiv" onclick="endrevideo1()" ><p id="endre3">5km &#9755; 1000</p></button>
+            <button class="earthbutton upgradeDiv" onclick="endrevideo2()" ><p id="endre4">50km &#9755; 5000</p></button>
+            <button class="earthbutton upgradeDiv" onclick="endrevideo3()" ><p id="endre5">500km &#9755; 10000</p></button>
+            <button class="earthbutton upgradeDiv" onclick="endrevideo4()" ><p id="endre6">2000km &#9755; 200000</p></button>
+
+            </div>
+            </div>
+          </div>
+        </div>
+          <div class="wrapper2">
+            <div class="item4">
+              <div>
+              <button onclick="upgrade1Click()"
+            class ="upgradeDiv"><p id="upgrade1">10</p></button>
+            <p id="antupgrade1">0 EARTHBALL click(s)</p>
+          </div>
+
+          <div>
+                <button onclick="kjopdrones()" class ="upgradeDiv">
+                  <p id=prisdrones>20</p></button>
+                   <p id="pMus">0 JetPower(s)</p>
+            </div>
+              <button onclick="buyall5()"  class ="upgradeDiv buyall" >
+  <p id=prisbuyall5>Buy all</p>
+          </button>
+
+              </div>
+            <div class="item5">
+
+                <img id="endre" class="whitehouse"
+                <img src="bilder/image.png">
+                </img>
+                </div>
+              <div id="map"></div>
+          </div>
+
+
+          <script>
+          let money=0;
+          let moneyPerClick = 1;
+          let upgrade1 = 10;
+          let upgrade1El= document.getElementById("upgrade1");
+          let antupgrade1El= document.getElementById("antupgrade1");
+          let musEl = document.getElementById("pMus");
+          let antupgrade1 = 0;
+          let antalldrones = 0;
+          let prisdrones = 20;
+          let prisdronesEl= document.getElementById("prisdrones");
+          let prisbuyall5= 30;
+          let prisbuyall5El= document.getElementById("prisbuyall5");
+          let idleklikk = 0;
+          let counter=0 ;
+          let map1=1000;
+          let map2=5000;
+          let map3=10000;
+          let map4=200000;
+
+
+
+        document.getElementById("money").innerHTML=money;
+            function klikk() {
+              money += moneyPerClick;
+              document.getElementById("money").innerHTML=money;
+                counter++
+                  document.getElementById("counter").innerHTML=counter;
+            }
+
+
+  function upgrade1Click(){
+    if(money >= upgrade1){
+      money -= upgrade1
+      moneyPerClick ++;
+      antupgrade1++;
+        upgrade1=Math.floor(upgrade1*1.20);
+      document.getElementById("upgrade1").innerHTML = upgrade1;
+      document.getElementById("money").innerHTML = money;
+     antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+      upgrade1El.innerHTML=upgrade1+" ";
+      prisbuyall5=Math.floor(upgrade1+prisdrones);
+      prisbuyall5El.innerHTML=prisbuyall5+" ";
+    } else{
+      alert("Skaff mer kash");
+    }
+  }
+  function kjopdrones(){
+if(money >= prisdrones){
+  money = money-prisdrones;
+ prisdrones=Math.floor( Math.pow(prisdrones*1.0001, 1.02));
+antalldrones++;
+      document.getElementById("money").innerHTML = money;
+      musEl.innerHTML=antalldrones+" JetPower(s)";
+      prisdronesEl.innerHTML=prisdrones+" ";
+      prisbuyall5=Math.floor(upgrade1+prisdrones);
+      prisbuyall5El.innerHTML=prisbuyall5+" ";
+}else{
+  alert("Skaff mer kash")
+}
+
+  }
+  function idle(){
+idleklikk = antalldrones*1;
+money = money + idleklikk;
+      document.getElementById("money").innerHTML = money;
+  }
+  setInterval(idle,1000);
+
+function buyall5() {
+if(money >= prisdrones+upgrade1){
+
+  money = money-prisdrones;
+  money -= upgrade1
+  moneyPerClick ++;
+  antupgrade1++;
+
+    upgrade1=Math.floor(upgrade1*1.20);
+  prisdrones=Math.floor( Math.pow(prisdrones*1.0001, 1.02));
+  antalldrones++;
+    document.getElementById("upgrade1").innerHTML = upgrade1;
+      document.getElementById("money").innerHTML = money;
+        musEl.innerHTML=antalldrones+" JetPower(s)";
+        prisdronesEl.innerHTML=prisdrones+" ";
+       antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+        upgrade1El.innerHTML=upgrade1+" ";
+          prisbuyall5=Math.floor(upgrade1+prisdrones);
+          prisbuyall5El.innerHTML=prisbuyall5+" ";
+          document.getElementById("money").innerHTML = money;
+}else{
+  alert("Skaff mer kash")
+}
+}
+  console.log("log");
+  var videonr = 4;
+  var video1kjop=false;
+  var video2kjop=false;
+  var video3kjop=false;
+  var video4kjop=false;
+  function endrevideo1(){
+      if(money >= map1 && !video1kjop){
+        video1kjop=true;
+        money -= map1
+          document.getElementById("money").innerHTML = money;
+          moneyPerClick +=5;
+          antupgrade1 +=5;
+antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+    document.getElementById("endre").src="bilder/image (1).png";
+    document.getElementById("endre2").innerHTML="5km";
+        document.getElementById("endre3").innerHTML="<strike>5km &#9755; 1000";}
+
+  }
+  function endrevideo2(){
+    if(money >= map2 && !video2kjop){
+      video2kjop=true;
+      money -= map2
+      moneyPerClick +=10;
+      antupgrade1 +=10;
+antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+antalldrones +=5;
+  musEl.innerHTML=antalldrones+" JetPower(s)";
+
+        document.getElementById("money").innerHTML = money;
+    document.getElementById("endre").src="bilder/image (2).png";
+    document.getElementById("endre2").innerHTML="50km";
+      document.getElementById("endre4").innerHTML="<strike>50km &#9755; 5000";}
+
+  }
+  function endrevideo3(){
+    if(money >= map3 && !video3kjop){
+      video3kjop=true;
+      money -= map3
+      moneyPerClick +=20;
+      antupgrade1 +=20;
+antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+antalldrones +=10;
+  musEl.innerHTML=antalldrones+" JetPower(s)";
+        document.getElementById("money").innerHTML = money;
+    document.getElementById("endre").src="bilder/image (3).png";
+  document.getElementById("endre5").innerHTML="<strike>500km &#9755; 10000";}
+
+  }
+  function endrevideo4(){
+    if(money >= map4 && !video4kjop){
+      video4kjop=true;
+      money -= map4
+      moneyPerClick +=1000;
+      antupgrade1 +=1000;
+antupgrade1El.innerHTML=antupgrade1+" EARTHBALL click(s)";
+antalldrones +=500;
+  musEl.innerHTML=antalldrones+" JetPower(s)";
+        document.getElementById("money").innerHTML = money;
+    document.getElementById("endre").src="bilder/image (4).png";
+    document.getElementById("endre2").innerHTML="2000km";
+  document.getElementById("endre6").innerHTML="<strike>2000km &#9755; 200000";}
+setTimeout(() => {   alert("YOU WON WOOO!!!"); }, 5000);
+
+  }
+          </script>
+  </body>
+</html>
